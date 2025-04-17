@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moodle - Pick a Mood, Get a Word</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffe0f7);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    button {
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      background-color: #9c27b0;
+      transform: scale(1.1);
+    }
+
+    #word-display {
+      font-size: 2em;
+      font-weight: bold;
+      color: #00796b;
+      margin-top: 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌈 Moodle</h1>
+  <p>Pick a mood and get a word that matches it.</p>
+
+  <div class="buttons">
+    <button onclick="showWord('happy')">😊 Happy</button>
+    <button onclick="showWord('chill')">😌 Chill</button>
+    <button onclick="showWord('inspired')">🌟 Inspired</button>
+    <button onclick="showWord('curious')">🧐 Curious</button>
+    <button onclick="showWord('bold')">🔥 Bold</button>
+  </div>
+
+  <div id="word-display">✨</div>
+
+  <script>
+    const words = {
+      happy: ["Sunbeam", "Giggles", "Bubbly", "Zest", "Joyride"],
+      chill: ["Drift", "Tranquil", "Breeze", "Glow", "Lo-fi"],
+      inspired: ["Elevate", "Muse", "Dreamscape", "Radiate", "Momentum"],
+      curious: ["Whimsy", "Puzzle", "Quirk", "Enigma", "Mystic"],
+      bold: ["Roar", "Thrive", "Ignite", "Clash", "Fierce"]
+    };
+
+    function showWord(mood) {
+      const list = words[mood];
+      const word = list[Math.floor(Math.random() * list.length)];
+      const display = document.getElementById('word-display');
+      display.style.animation = "none"; // Reset animation
+      display.offsetHeight; // Trigger reflow
+      display.style.animation = null; // Restart animation
+      display.textContent = word;
+    }
+  </script>
+
+</body>
+</html>
